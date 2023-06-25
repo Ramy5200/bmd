@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pharmacy Management System - Requests</title>
+    <style>
+		body {
+			background-image: url("wallpaper.jpg");
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+			padding: 100px;
+			font-family: Arial, sans-serif;
+		}
+
+		header {
+			background-color: #53040f;
+			color: #FFFFFF;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 10px;
+		}
+
+		.logo {
+			font-size: 24px;
+			font-weight: bold;
+		}
+
+		nav {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 10px;
+			background-color: #FFFFFF;
+			box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+			margin-bottom: 20px;
+		}
+
+		nav a {
+			color: #333333;
+			text-decoration: none;
+			font-size: 16px;
+			margin: 0 10px;
+			padding: 10px;
+			border-radius: 5px;
+			transition: all 0.3s ease;
+		}
+
+		nav a:hover {
+			background-color: #53040f;
+			color: #FFFFFF;
+		}
+
+		section {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			align-items: center;
+			margin: 20px;
+		}
+
+		.box {
+			background-color: #FFFFFF;
+			border-radius: 50%;
+			box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+			padding: 20px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+			overflow: hidden;
+			width: 190px;
+			height: 190px;
+			margin: 20px;
+		}
+
+
+		.box::before {
+			content: "";
+			position: absolute;
+			top: -100px;
+			left: -100px;
+			width: 200px;
+			height: 200px;
+			background-color: rgba(0, 0, 0, 0.05);
+			border-radius: 50%;
+			transform: rotate(45deg);
+			z-index: -1;
+		}
+
+		h2 {
+			font-size: 24px;
+			margin-top: 0;
+			margin-bottom: 10px;
+		}
+
+		p {
+			font-size: 16px;
+			margin-top: 0;
+			margin-bottom: 20px;
+		}
+
+		button {
+			background-color: #333;
+			color: white;
+			padding: 10px 16px;
+			border: none;
+			border-radius: 10px;
+			cursor: pointer;
+			font-size: 16px;
+			margin-top: 20px;
+		}
+
+		.stats {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color: #000000;
+			padding: 20px;
+			margin: 20px;
+			border-radius: 10px;
+			box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+		}
+
+		.stats div {
+			margin: 0 20px;
+			flex: 1;
+			text-align: center;
+		}
+
+		.stats h3 {
+			margin-top: 0;
+			font-size: 24px;
+		}
+
+		.stats p {
+			margin-bottom: 0;
+			font-size: 16px;
+		}
+	</style>
+</head>
+<body>
+<header>
+    <h1>Wellness Pharmacy</h1>
+    <nav>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="handle_request.php" class="active">Requests</a>
+        <a href="products.html">Products</a>
+        <a href="customers.html">Customers</a>
+        <a href="settings.html">Settings</a>
+    </nav>
+</header>
+<h2>Requests</h2>
+<input type="text" id="search" placeholder="Search requests by patient id...">
+<table>
+    <thead>
+    <tr>
+        <th>Patient ID</th>
+        <th>Patient Name</th>
+        <th>Drug Name</th>
+        <th>Strength</th>
+        <th>Route Adm</th>
+        <th>Freq</th>
+        <th>Duration</th>
+        <th>Remarks</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="request-row">
+        <td>001</td>
+        <td>Rawan Alaa</td>
+        <td>Aspirin & Ramipril</td>
+        <td>500mg</td>
+        <td>Oral</td>
+        <td>Once daily</td>
+        <td>7 days</td>
+        <td>Take both with food</td>
+        <td>Pending</td>
+        <td>
+            <div class="approve-div">
+                <a href="#" class="button approve-button" id="approve-001">Approve</a>
+            </div>
+            <div class="reject-div">
+                <a href="#" class="button reject-button" id="reject-001">Reject</a>
+            </div>
+            <div class="fulfill-div">
+                <a href="#" class="button fulfill-button" id="fulfill-001">Fulfill</a>
+            </div>
+        </td>
+    </tr>
+    <tr class="request-row">
+        <td>002</td>
+        <td>Fatima Ahmed</td>
+        <td>Metformin</td>
+        <td>1000mg</td>
+        <td>Oral</td>
+        <td>Twice daily</td>
+        <td>30 days</td>
+        <td>No special instructions</td>
+        <td>Pending</td>
+        <td>
+            <div class="approve-div">
+                <a href="#" class="button approve-button" id="approve-002">Approve</a>
+            </div>
+            <div class="reject-div">
+                <a href="#" class="button reject-button" id="reject-002">Reject</a>
+            </div>
+            <div class="fulfill-div">
+                <a href="#" class="button fulfill-button" id="fulfill-002">Fulfill</a>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<!-- Add script to handle button clicks -->
+<script>
+    const tableBody = document.querySelector("table tbody");
+
+    // Listen for click events on the approve, reject, and fulfill buttons
+    tableBody.addEventListener("click", event => {
+        const button = event.target;
+        const row = button.closest(".request-row");
+
+        // If the button is an approve button, change the status to "Approved"
+        if (button.classList.contains("approve-button")) {
+            row.children[8].textContent = "Approved";
+            button.remove();
+            row.querySelector(".reject-button").remove();
+            row.querySelector(".fulfill-button").classList.add("button-disabled");
+        }
+        // If the button is a reject button, change the status to "Rejected" and show the notes input and button
+        else if (button.classList.contains("reject-button")) {
+            row.children[8].textContent = "Rejected";
+            button.remove();
+            row.querySelector(".approve-button").remove();
+            row.querySelector(".fulfill-button").remove();
+            row.querySelector(".notes-div").style.display = "block";
+        }
+        // If the button is a fulfill button, change the status to "Fulfilled"
+        else if (button.classList.contains("fulfill-button")) {
+            row.children[8].textContent = "Fulfilled";
+            button.remove();
+            row.querySelector(".approve-button").remove();
+            row.querySelector(".reject-button").remove();
+        }
+    });
+</script>
+</body>
+</html>
